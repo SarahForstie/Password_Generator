@@ -10,11 +10,11 @@ class passwordGen():
         self._password = self.setPwd()
 
     def Attempt_SignIn(self, user_name, password):
-        x = int(time.strftime("%M"))
+        time = int(time.strftime("%M"))
     # Checks the user's input against the actual password
-        if self._login.lower() == user_name.lower() and self._password == password and (x % 6) != 0:
+        if self._login.lower() == user_name.lower() and self._password == password and (time % 6) != 0:
             return "Access Granted"
-        elif self._login.lower() == user_name.lower() and self._password == password and (x % 6) == 0:
+        elif self._login.lower() == user_name.lower() and self._password == password and (time % 6) == 0:
             print("You forgot the threat of the guard while hacking...\nYou had the right password but got caught\nYou get locked back out")
             self._password = self.setPwd()
             return "Password reset"
