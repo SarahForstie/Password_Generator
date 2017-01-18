@@ -10,13 +10,19 @@ class passwordGen():
         self._password = self.setPwd()
 
     def Attempt_SignIn(self, user_name, password):
-        if self._login.lower() == user_name.lower() and self._password == password:
+        x = int(time.strftime("%M"))
+    # Checks the user's input against the actual password
+        if self._login.lower() == user_name.lower() and self._password == password and (x % 6) != 0:
             return "Access Granted"
+        elif self._login.lower() == user_name.lower() and self._password == password and (x % 6) == 0:
+            print("You forgot the threat of the guard while hacking...\nYou had the right password but got caught\nYou get locked back out")
+            self._password = self.setPwd()
+            return "Password reset"
         else:
             return "Access Denied"
     
     def loginGen(self):
-    #Generates login as a list then joins the list and returns to main.
+    # Generates login as a list then joins the list and returns to main.
         login_list = []
         login_list.append(self._day)
         login_list.append(time.strftime("%#m"))
@@ -25,7 +31,7 @@ class passwordGen():
         return login
 
     def setPwd(self):
-    # Acts as a hub for 5 functions to put together the password.
+    # Acts as a hub for 4 functions to put together the password.
         word = self.genWord()
         character = self.genChar()
         number = self.genNum()
@@ -86,3 +92,7 @@ class passwordGen():
         finally:
             text_file.close()
 
+pass1 = passwordGen()
+print(pass1._login)
+print(pass1._password)
+print(pass1.Attempt_SignIn("Wednesday12017",pass1._password))
